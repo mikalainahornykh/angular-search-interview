@@ -1,5 +1,3 @@
-import { User } from '../app/api/user.model';
-
 const FIRST_NAMES = [
   'Anna', 'Boris', 'Daria', 'Egor', 'Irina', 'Kirill', 'Maria', 'Nikita',
   'Olga', 'Pavel', 'Sofia', 'Timur', 'Vera', 'Artem', 'Elena', 'Maxim',
@@ -10,10 +8,10 @@ const LAST_NAMES = [
   'Lebedev', 'Kozlov', 'Novikov', 'Morozov',
 ];
 const CITIES = ['Moscow', 'Saint Petersburg', 'Kazan', 'Novosibirsk', 'Yekaterinburg', 'Minsk', 'Almaty', 'Tbilisi'];
-const ROLES: User['role'][] = ['Developer', 'Designer', 'Manager', 'QA', 'Analyst'];
+const ROLES = ['Developer', 'Designer', 'Manager', 'QA', 'Analyst'];
 
 /** Deterministic set of 80 users, identical on every run. */
-export const USERS: User[] = Array.from({ length: 80 }, (_, i) => {
+export const USERS = Array.from({ length: 80 }, (_, i) => {
   const first = FIRST_NAMES[(i * 7) % FIRST_NAMES.length];
   const last = LAST_NAMES[(i * 3) % LAST_NAMES.length] + (FEMALE.has(first) ? 'a' : '');
   return {
