@@ -3,8 +3,6 @@
  * the interviewer may tweak them during the interview (restart `npm start` afterwards).
  */
 export const MOCK_BACKEND = {
-  port: 3100,
-
   /**
    * Response delay depends on query length: the SHORTER the query, the LONGER the response.
    * This makes the race reproducible: "an" arrives later than "anna".
