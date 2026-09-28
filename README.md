@@ -18,11 +18,12 @@ npm start
 ## Структура
 
 ```
-src/
-├── app/
-│   ├── users-search/
-│   │   ├── users-search.ts   ← работаем здесь
-│   │   └── user-card.ts      готовая карточка пользователя
-│   └── api/                  клиент API (менять не нужно)
-mock-server/                  фейковый бэкенд, его отдаёт ng serve (менять не нужно)
+src/app/
+├── users-search/
+│   ├── users-search.ts   ← задачи 1 и 2
+│   └── user-card.ts      готовая карточка пользователя
+├── favorites/
+│   └── favorites.store.ts ← задача 3
+└── api/                  клиенты API (менять не нужно)
+mock-server/              фейковый бэкенд, его отдаёт ng serve (менять не нужно)
 ```

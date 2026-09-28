@@ -1,12 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { Subject, catchError, mergeMap, of, startWith } from 'rxjs';
+import { Subject, catchError, debounceTime, distinctUntilChanged, of, startWith, switchMap } from 'rxjs';
 import { UsersApi } from '../api/users.api';
 import { User } from '../api/user.model';
+import { FavoritesStore } from '../favorites/favorites.store';
 import { UserCard } from './user-card';
 
 /**
- * All the work for the task happens here (see TASK.md).
+ * Tasks 1 and 2 (see TASK.md).
  * Feel free to create new files if needed.
  */
 @Component({
@@ -23,20 +24,27 @@ import { UserCard } from './user-card';
 
     <div class="results">
       @for (user of users(); track user.id) {
-        <app-user-card [user]="user" />
+        <app-user-card
+          [user]="user"
+          [favorite]="favorites.isFavorite(user.id)"
+          (favoriteClick)="favorites.toggle(user.id)"
+        />
       }
     </div>
   `,
 })
 export class UsersSearch {
   private readonly usersApi = inject(UsersApi);
+  protected readonly favorites = inject(FavoritesStore);
 
   protected readonly query$ = new Subject<string>();
 
   protected readonly users = toSignal(
     this.query$.pipe(
       startWith(''),
-      mergeMap((query) => this.usersApi.search(query)),
+      debounceTime(300),
+      distinctUntilChanged(),
+      switchMap((query) => this.usersApi.search(query.trim())),
       // if the server returns an error, show an empty list
       catchError(() => of<User[]>([])),
     ),
