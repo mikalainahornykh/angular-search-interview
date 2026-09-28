@@ -1,20 +1,20 @@
 /**
- * Настройки фейкового бэкенда. Кандидату менять не нужно,
- * интервьюер может подкрутить их по ходу собеса.
+ * Fake backend settings. The candidate does not need to change them;
+ * the interviewer may tweak them during the interview.
  */
 export const MOCK_BACKEND = {
   /**
-   * Задержка ответа зависит от длины запроса: чем КОРОЧЕ строка, тем ДОЛЬШЕ ответ.
-   * Так гонка воспроизводится стабильно: запрос «an» приходит позже, чем «anna».
+   * Response delay depends on query length: the SHORTER the query, the LONGER the response.
+   * This makes the race reproducible: "an" arrives later than "anna".
    */
   maxDelayMs: 1800,
   minDelayMs: 250,
   delayStepPerCharMs: 350,
   jitterMs: 300,
 
-  /** Вероятность случайной ошибки 500 для непустого запроса (0…1). */
+  /** Probability of a random 500 error for a non-empty query (0..1). */
   randomErrorRate: 0.15,
 
-  /** Запрос, содержащий это слово, падает с ошибкой всегда — удобно для демонстрации. */
+  /** A query containing this word always fails. Handy for demos. */
   forceErrorKeyword: 'error',
 };

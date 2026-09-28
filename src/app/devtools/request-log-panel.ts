@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RequestLog } from './request-log';
 
-/** Панель с журналом запросов. Служебный компонент, к задаче не относится. */
+/** Request log panel. Infrastructure component, not part of the task. */
 @Component({
   selector: 'app-request-log-panel',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,7 +12,7 @@ import { RequestLog } from './request-log';
           Network: {{ log.total() }} {{ collapsed() ? '[+]' : '[-]' }}
         </button>
         @if (!collapsed()) {
-          <button class="link" type="button" (click)="log.clear()">очистить</button>
+          <button class="link" type="button" (click)="log.clear()">clear</button>
         }
       </header>
 
@@ -27,16 +27,16 @@ import { RequestLog } from './request-log';
                   @case ('pending') { ... }
                   @case ('success') { 200 }
                   @case ('error') { 500 }
-                  @case ('cancelled') { отменён }
+                  @case ('cancelled') { cancelled }
                 }
               </span>
-              <span class="ms">{{ e.durationMs ?? '...' }} мс</span>
+              <span class="ms">{{ e.durationMs ?? '...' }} ms</span>
               @if (e.stale) {
-                <span class="warn" title="Этот ответ пришёл позже ответа на более новый запрос">устарел</span>
+                <span class="warn" title="This response arrived after the response to a newer request">stale</span>
               }
             </li>
           } @empty {
-            <li class="empty">Запросов пока не было</li>
+            <li class="empty">No requests yet</li>
           }
         </ol>
       }

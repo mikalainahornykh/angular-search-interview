@@ -8,11 +8,11 @@ export interface RequestLogEntry {
   status: RequestStatus;
   startedAt: number;
   durationMs?: number;
-  /** Ответ пришёл, но к этому моменту уже был отправлен более новый запрос. */
+  /** The response arrived after a newer request had already been answered. */
   stale?: boolean;
 }
 
-/** Журнал запросов к фейковому бэкенду. Служебный код, к задаче не относится. */
+/** Log of requests to the fake backend. Infrastructure code, not part of the task. */
 @Injectable({ providedIn: 'root' })
 export class RequestLog {
   private nextId = 1;
@@ -30,8 +30,8 @@ export class RequestLog {
 
   finish(id: number, status: Exclude<RequestStatus, 'pending'>): void {
     this._entries.update((list) => {
-      // Более новый запрос уже успешно вернулся раньше этого → этот ответ устарел
-      // и, если его применить, перетрёт свежие данные.
+      // A newer request has already returned successfully -> this response is stale
+      // and, if applied, would overwrite fresh data.
       const newerAlreadyAnswered = list.some((e) => e.id > id && e.status === 'success');
       return list.map((e) =>
         e.id === id

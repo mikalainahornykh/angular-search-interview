@@ -7,7 +7,7 @@ import { UsersSearch } from './users-search/users-search';
   imports: [UsersSearch, RequestLogPanel],
   template: `
     <main>
-      <h1>Пользователи</h1>
+      <h1>Users</h1>
       <app-users-search />
     </main>
     <app-request-log-panel />

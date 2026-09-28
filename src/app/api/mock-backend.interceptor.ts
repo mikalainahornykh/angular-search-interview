@@ -6,9 +6,9 @@ import { MOCK_BACKEND as cfg } from './mock-backend.config';
 import { USERS } from './users.data';
 
 /**
- * Фейковый бэкенд: перехватывает GET /api/users и отвечает из памяти
- * с искусственной задержкой и случайными ошибками.
- * Служебный код, к задаче не относится.
+ * Fake backend: intercepts GET /api/users and responds from memory
+ * with an artificial delay and random errors.
+ * Infrastructure code, not part of the task.
  */
 export const mockBackendInterceptor: HttpInterceptorFn = (req, next) => {
   if (req.method !== 'GET' || !req.url.endsWith('/api/users')) {
@@ -39,7 +39,7 @@ export const mockBackendInterceptor: HttpInterceptorFn = (req, next) => {
             status: 500,
             statusText: 'Internal Server Error',
             url: req.urlWithParams,
-            error: { message: 'Сервер временно недоступен' },
+            error: { message: 'Server temporarily unavailable' },
           }),
         );
         return;
@@ -57,7 +57,7 @@ export const mockBackendInterceptor: HttpInterceptorFn = (req, next) => {
       subscriber.complete();
     }, delay);
 
-    // Отписка до ответа = отменённый запрос (как abort у настоящего XHR/fetch).
+    // Unsubscribing before the response = cancelled request (like abort for a real XHR/fetch).
     return () => {
       if (!done) {
         clearTimeout(timer);

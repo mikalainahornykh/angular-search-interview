@@ -12,7 +12,7 @@ const LAST_NAMES = [
 const CITIES = ['Moscow', 'Saint Petersburg', 'Kazan', 'Novosibirsk', 'Yekaterinburg', 'Minsk', 'Almaty', 'Tbilisi'];
 const ROLES: User['role'][] = ['Developer', 'Designer', 'Manager', 'QA', 'Analyst'];
 
-/** Детерминированный набор из 80 пользователей — одинаковый при каждом запуске. */
+/** Deterministic set of 80 users, identical on every run. */
 export const USERS: User[] = Array.from({ length: 80 }, (_, i) => {
   const first = FIRST_NAMES[(i * 7) % FIRST_NAMES.length];
   const last = LAST_NAMES[(i * 3) % LAST_NAMES.length] + (FEMALE.has(first) ? 'a' : '');

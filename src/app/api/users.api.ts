@@ -4,10 +4,10 @@ import { Observable } from 'rxjs';
 import { User } from './user.model';
 
 /**
- * Клиент API пользователей. Использовать как есть, менять не нужно.
+ * Users API client. Use as is, no changes needed.
  *
- * GET /api/users?q=<строка>  →  User[]
- * Поиск идёт по имени, email и городу, без учёта регистра.
+ * GET /api/users?q=<string>  ->  User[]
+ * Case-insensitive search by name, email and city.
  */
 @Injectable({ providedIn: 'root' })
 export class UsersApi {

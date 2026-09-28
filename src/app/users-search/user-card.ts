@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { User } from '../api/user.model';
 
-/** Карточка пользователя. Готовый компонент, менять не нужно. */
+/** User card. Ready-made component, no changes needed. */
 @Component({
   selector: 'app-user-card',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,7 +9,7 @@ import { User } from '../api/user.model';
     <div class="avatar">{{ initials() }}</div>
     <div class="info">
       <div class="name">{{ user().name }}</div>
-      <div class="meta">{{ user().email }} · {{ user().city }}</div>
+      <div class="meta">{{ user().email }} &middot; {{ user().city }}</div>
     </div>
     <span class="role">{{ user().role }}</span>
   `,

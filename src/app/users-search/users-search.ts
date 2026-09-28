@@ -6,8 +6,8 @@ import { User } from '../api/user.model';
 import { UserCard } from './user-card';
 
 /**
- * Здесь идёт вся работа по задаче (см. TASK.md).
- * Можно создавать новые файлы, если нужно.
+ * All the work for the task happens here (see TASK.md).
+ * Feel free to create new files if needed.
  */
 @Component({
   selector: 'app-users-search',
@@ -17,7 +17,7 @@ import { UserCard } from './user-card';
       #box
       class="search"
       type="search"
-      placeholder="Поиск по имени, email или городу"
+      placeholder="Search by name, email or city"
       (input)="query$.next(box.value)"
     />
 
@@ -37,7 +37,7 @@ export class UsersSearch {
     this.query$.pipe(
       startWith(''),
       mergeMap((query) => this.usersApi.search(query)),
-      // если сервер вернул ошибку — показываем пустой список
+      // if the server returns an error, show an empty list
       catchError(() => of<User[]>([])),
     ),
     { initialValue: [] as User[] },
