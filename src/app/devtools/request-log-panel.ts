@@ -9,7 +9,7 @@ import { RequestLog } from './request-log';
     <section class="panel" [class.collapsed]="collapsed()">
       <header>
         <button class="toggle" type="button" (click)="collapsed.set(!collapsed())">
-          Network: {{ log.total() }} {{ collapsed() ? '▲' : '▼' }}
+          Network: {{ log.total() }} {{ collapsed() ? '[+]' : '[-]' }}
         </button>
         @if (!collapsed()) {
           <button class="link" type="button" (click)="log.clear()">очистить</button>
@@ -24,13 +24,13 @@ import { RequestLog } from './request-log';
               <span class="q">q="{{ e.query }}"</span>
               <span class="status">
                 @switch (e.status) {
-                  @case ('pending') { ⏳ }
+                  @case ('pending') { ... }
                   @case ('success') { 200 }
                   @case ('error') { 500 }
                   @case ('cancelled') { отменён }
                 }
               </span>
-              <span class="ms">{{ e.durationMs ?? '…' }} мс</span>
+              <span class="ms">{{ e.durationMs ?? '...' }} мс</span>
               @if (e.stale) {
                 <span class="warn" title="Этот ответ пришёл позже ответа на более новый запрос">устарел</span>
               }

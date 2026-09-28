@@ -6,7 +6,7 @@ import { User } from '../api/user.model';
 import { UserCard } from './user-card';
 
 /**
- * 👉 Здесь идёт вся работа по задаче (см. TASK.md).
+ * Здесь идёт вся работа по задаче (см. TASK.md).
  * Можно создавать новые файлы, если нужно.
  */
 @Component({
