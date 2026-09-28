@@ -1,4 +1,4 @@
-import { User } from './user.model';
+import { User } from '../app/api/user.model';
 
 const FIRST_NAMES = [
   'Anna', 'Boris', 'Daria', 'Egor', 'Irina', 'Kirill', 'Maria', 'Nikita',

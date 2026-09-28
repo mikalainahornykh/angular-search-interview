@@ -18,10 +18,11 @@ npm start
 ## Структура
 
 ```
-src/app/
-├── users-search/
-│   ├── users-search.ts     ← работаем здесь
-│   └── user-card.ts        готовая карточка пользователя
-├── api/                    клиент API и фейковый бэкенд (менять не нужно)
-└── devtools/               панель Network (менять не нужно)
+src/
+├── app/
+│   ├── users-search/
+│   │   ├── users-search.ts   ← работаем здесь
+│   │   └── user-card.ts      готовая карточка пользователя
+│   └── api/                  клиент API (менять не нужно)
+└── mocks/                    фейковый бэкенд на Mock Service Worker (менять не нужно)
 ```
